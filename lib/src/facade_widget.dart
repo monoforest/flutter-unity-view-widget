@@ -24,6 +24,7 @@ class UnityWidget extends StatefulWidget {
     this.borderRadius = BorderRadius.zero,
     this.layoutDirection,
     this.hideStatus = false,
+    this.uri,
   });
 
   ///Event fires when the unity player is created.
@@ -75,6 +76,9 @@ class UnityWidget extends StatefulWidget {
   /// If this is null, the ambient [Directionality] is used instead. If there is
   /// no ambient [Directionality], [TextDirection.ltr] is used.
   final TextDirection? layoutDirection;
+
+  /// override uri to load unity player for web
+  final Uri? uri;
 
   @override
   _UnityWidgetState createState() => _UnityWidgetState();

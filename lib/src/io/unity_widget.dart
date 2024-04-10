@@ -70,6 +70,7 @@ class UnityWidget extends StatefulWidget {
     this.layoutDirection,
     this.hideStatus = false,
     this.webUrl,
+    this.uri,
   });
 
   ///Event fires when the unity player is created.
@@ -124,6 +125,9 @@ class UnityWidget extends StatefulWidget {
   /// If this is null, the ambient [Directionality] is used instead. If there is
   /// no ambient [Directionality], [TextDirection.ltr] is used.
   final TextDirection? layoutDirection;
+
+  /// override uri to load unity player for web
+  final Uri? uri;
 
   @override
   _UnityWidgetState createState() => _UnityWidgetState();
@@ -183,7 +187,7 @@ class _UnityWidgetState extends State<UnityWidget> {
           TextDirection.ltr,
       gestureRecognizers: widget.gestureRecognizers,
       useAndroidViewSurf: widget.useAndroidViewSurface,
-      unitySrcUrl: widget.webUrl,
+      unitySrcUrl: widget.uri != null ? widget.uri!.path : widget.webUrl,
     );
   }
 

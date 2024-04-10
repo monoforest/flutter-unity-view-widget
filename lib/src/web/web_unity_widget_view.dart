@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebUnityWidgetView extends StatefulWidget {
+  final Uri? uri;
+
   const WebUnityWidgetView({
     Key? key,
     required this.onWebViewCreated,
     required this.unityOptions,
+    this.uri,
   }) : super(key: key);
 
   final Map<String, dynamic> unityOptions;
@@ -16,9 +19,9 @@ class WebUnityWidgetView extends StatefulWidget {
 }
 
 class _WebUnityWidgetViewState extends State<WebUnityWidgetView> {
-  final WebViewController _controller = WebViewController()
+  late final WebViewController _controller = WebViewController()
     ..loadRequest(
-      Uri.parse('${_getBasePath()}/UnityLibrary/index.html'),
+      widget.uri ?? Uri.parse('${_getBasePath()}/UnityLibrary/index.html'),
     );
 
   @override

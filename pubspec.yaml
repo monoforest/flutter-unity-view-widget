@@ -6,6 +6,7 @@ version: 2022.2.1
 #  - Thomas Stockx <thomas@stockxit.com>
 #  - Kris Pypen <kris.pypen@gmail.com>
 homepage: https://github.com/juicycleff/flutter-unity-view-widget/tree/master
+publish_to: "none"
 
 environment:
   sdk: ">=2.16.0 <4.0.0"

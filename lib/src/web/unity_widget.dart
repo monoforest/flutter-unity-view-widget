@@ -28,6 +28,7 @@ class UnityWidget extends StatefulWidget {
     this.borderRadius = BorderRadius.zero,
     this.layoutDirection,
     this.hideStatus = false,
+    this.uri,
   });
 
   ///Event fires when the unity player is created.
@@ -80,6 +81,9 @@ class UnityWidget extends StatefulWidget {
   /// no ambient [Directionality], [TextDirection.ltr] is used.
   final TextDirection? layoutDirection;
 
+  /// override uri to load unity player
+  final Uri? uri;
+
   @override
   _UnityWidgetState createState() => _UnityWidgetState();
 }
@@ -114,6 +118,7 @@ class _UnityWidgetState extends State<UnityWidget> {
     return WebUnityWidgetView(
       onWebViewCreated: _onPlatformViewCreated,
       unityOptions: unityOptions,
+      uri: widget.uri,
     );
   }
 
