@@ -99,21 +99,23 @@ class WebUnityWidgetController extends UnityWidgetController {
   _registerEvents() {
     if (kIsWeb) {
       html.window.addEventListener('message', (event) {
-        final raw = (event as html.MessageEvent).data.toString();
-        // ignore: unnecessary_null_comparison
-        if (raw == '' || raw == null) return;
-        if (raw == 'unityReady') {
-          unityReady = true;
-          unityPause = false;
+        try {
+          final raw = (event as html.MessageEvent).data.toString();
+          // ignore: unnecessary_null_comparison
+          if (raw == '' || raw == null) return;
+          if (raw == 'unityReady') {
+            unityReady = true;
+            unityPause = false;
 
-          _unityStreamController.add(UnityCreatedEvent(0, {}));
-          return;
-        }
+            _unityStreamController.add(UnityCreatedEvent(0, {}));
+            return;
+          }
 
-        _processEvents(UnityWebEvent(
-          name: event.data['name'],
-          data: event.data['data'],
-        ));
+          _processEvents(UnityWebEvent(
+            name: event.data['name'],
+            data: event.data['data'],
+          ));
+        } catch (e) {}
       });
     }
   }
